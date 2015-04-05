@@ -37,6 +37,7 @@ int main() {
 	return 0;
 }
 </code></pre>
+It's POSSIBLE to just include the header file to your project, if you are just constructing error elements but not accessing any other member function (i.e. if you are developing a library, which is throwing error objects, but doesnt handle them), because the constructor is declared in the header file. Personally I would NOT recomend this, because you could get errors while compiling, if you forget to use no member function and in case of a library (which should be the most often case for creating but not accesing error objects) you can add the error_library source or binary and header to your library, so the user of your library can directly access error objects.
 
 ##License
 Copyright 2015 DevWurm<br>
