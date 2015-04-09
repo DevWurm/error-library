@@ -80,6 +80,7 @@ string error::get_message() const {
 	if (file != "") {
 		text << " in " << file;
 	}
+	text << '\n';
 	return text.str();
 }
 
@@ -95,6 +96,7 @@ void error::output_error() const {
 	if (file != "") {
 		text << " in " << file;
 	}
+	text << '\n';
 	cout << text.str();
 }
 
@@ -110,6 +112,7 @@ void error::output_error(ostream& output) {
 	if (file != "") {
 		text << " in " << file;
 	}
+	text << '\n';
 	output << text.str();
 }
 
@@ -125,6 +128,7 @@ ostream& operator<< (ostream& output, error& err_obj) {
 	if (err_obj.file != "") {
 		text << " in " << err_obj.file;
 	}
+	text << '\n';
 	output << text.str();
 	return output;
 }
