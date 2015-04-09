@@ -53,9 +53,12 @@ private:
 	string file;
 public:
 	error(int c, string d);
+	error(int c, string d, int l);
 	error(int c, string d, int l, string f);
 	int get_code() const;
 	string get_description() const;
+	int get_line() const;
+		string get_file() const;
 	string get_message() const; //get a string with code and description
 	void output_error() const; //write error message to cout
 	void output_error(ostream& output); //write error message to output stream

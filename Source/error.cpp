@@ -48,6 +48,8 @@ namespace err {
 
 error::error(int c, string d):code(c), description(d), line(0), file("") {};
 
+error::error(int c, string d, int l):code(c), description(d), line(l), file("") {};
+
 error::error(int c, string d, int l, string f):code(c), description(d), line(l), file(f) {};
 
 int error::get_code() const {
@@ -58,22 +60,72 @@ string error::get_description() const {
 	return description;
 };
 
+int error::get_line() const {
+	return line;
+};
+
+string error::get_file() const {
+	return file;
+};
+
 string error::get_message() const {
-	stringstream converter;
-	converter << code;
-	return "Error (" + converter.str() + "): " + description;
+	stringstream text;
+	text << "Error (";
+	text << code;
+	text << "): ";
+	text << description;
+	if (line != 0) {
+		text << " at line " << line;
+	}
+	if (file != "") {
+		text << " in " << file;
+	}
+	return text.str();
 }
 
 void error::output_error() const {
-	cout << "Error (" << code << "): " << description;
+	stringstream text;
+	text << "Error (";
+	text << code;
+	text << "): ";
+	text << description;
+	if (line != 0) {
+		text << " at line " << line;
+	}
+	if (file != "") {
+		text << " in " << file;
+	}
+	cout << text.str();
 }
 
 void error::output_error(ostream& output) {
-	output << "Error (" << code << "): " << description;
+	stringstream text;
+	text << "Error (";
+	text << code;
+	text << "): ";
+	text << description;
+	if (line != 0) {
+		text << " at line " << line;
+	}
+	if (file != "") {
+		text << " in " << file;
+	}
+	output << text.str();
 }
 
 ostream& operator<< (ostream& output, error& err_obj) {
-	output << "Error (" << err_obj.code << "): " << err_obj.description;
+	stringstream text;
+	text << "Error (";
+	text << err_obj.code;
+	text << "): ";
+	text << err_obj.description;
+	if (err_obj.line != 0) {
+		text << " at line " << err_obj.line;
+	}
+	if (err_obj.file != "") {
+		text << " in " << err_obj.file;
+	}
+	output << text.str();
 	return output;
 }
 
