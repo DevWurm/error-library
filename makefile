@@ -8,13 +8,12 @@ all:
 	ranlib  .\lib\liberror_windows.a
 else	
 all:	source
-	mkdir lib
 	cp ./Headers/error.h ./lib/
 	mv ./lib/error.h ./lib/liberror.h
 	ar rs ./lib/liberror.a ./Binary/error.o
 
 source:
-	mkdir Binary
+	./prepare_directory.sh
 	g++ ./Source/error.cpp -std=c++11 -c -o ./Binary/error.o
 endif
 
