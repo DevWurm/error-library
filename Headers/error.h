@@ -49,8 +49,11 @@ class error {
 private:
 	int code;
 	string description;
+	int line;
+	string file;
 public:
-	error(int c, string m): code(c), description(m) {};
+	error(int c, string d);
+	error(int c, string d, int l, string f);
 	int get_code() const;
 	string get_description() const;
 	string get_message() const; //get a string with code and description

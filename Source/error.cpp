@@ -45,6 +45,11 @@ using std::endl;
 using std::stringstream;
 
 namespace err {
+
+error::error(int c, string d):code(c), description(d), line(0), file("") {};
+
+error::error(int c, string d, int l, string f):code(c), description(d), line(l), file(f) {};
+
 int error::get_code() const {
 	return code;
 };
